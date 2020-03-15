@@ -1,7 +1,7 @@
 package math.graphic.matriceFields;
 
-import IHM.ErrorBox;
 import IHM.Fenetre;
+import IHM.Button;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,30 +14,35 @@ public class MatriceDimField extends JDialog
 	private final JTextField jtfName;
 	private final JFormattedTextField jtf;
 	private final Fenetre fen;
-	private final MatriceDimField ceci = this;
 	
 	public MatriceDimField(Fenetre fen)
 	{
 		super(fen, "Nouvelle matrice", true);
+		
+		Container top = new Container();	//main container
+		top.setLayout(new GridLayout(3, 2));
+		
 		this.fen = fen;
-		JLabel label = new JLabel("Dimension :");
-		JLabel name = new JLabel("Nom :");
-		IHM.Button Ok = new IHM.Button("Ok", "ok");
 		this.jtf = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		this.jtfName = new JTextField();
-		JPanel top = new JPanel();
-		top.setLayout(new GridLayout(3, 2));
-		IHM.Button cancel = new IHM.Button("Annuler", "Annuler");
-		cancel.addActionListener(new cancelListener());
 		
 		this.setTitle("Nouvelle matrice d'adjacence");
 		this.setSize(300, 120);
 		this.setContentPane(top);
 		this.setLocationRelativeTo(null);
 		
+		JLabel label = new JLabel("Dimension :");
+		JLabel name = new JLabel("Nom :");
+		
+		Button Ok = new Button("Ok", "ok");
+		Ok.addActionListener(new BoutonListener());
+		
+		IHM.Button cancel = new IHM.Button("Annuler", "Annuler");
+		cancel.addActionListener(new cancelListener());
+		
+		
 		Font police = new Font("Arial", Font.BOLD, 14);
 		
-		Ok.addActionListener(new BoutonListener());
 		
 		jtf.setFont(police);
 		jtf.setPreferredSize(new Dimension(150, 30));
@@ -101,7 +106,7 @@ public class MatriceDimField extends JDialog
 			{
 				setEnabled(false);
 				setVisible(false);
-				MatriceAdjField nouvMat = new MatriceAdjField(fen, dim, nom);
+				fen.nouvMatAdj(dim, nom);
 			}
 		}
 	}

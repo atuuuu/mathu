@@ -20,30 +20,30 @@ public class MatriceAdjField extends JDialog
 	
 	public MatriceAdjField(Fenetre fen, int dim, String nom)
 	{
-		super(fen, "Renseignez la matrice d'adjacence", false);
-		this.nom = nom;
-		this.jtf = new JFormattedTextField[dim][dim];
-		this.dim = dim;
+		super(fen, "Renseignez la matrice d'adjacence", true);
 		this.fen = fen;
-		JLabel label = new JLabel("Renseignez la matrice d'adjacence :");
-		Button Ok = new Button("Valider", "Valider");
-		JPanel top = new JPanel();
-		Button allToOne = new Button("Tout mettre à 1", "Tout mettre à 1");
+		this.jtf = new JFormattedTextField[dim][dim];
+		this.nom = nom;
+		this.dim = dim;
 		
-		Font police = new Font("Arial", Font.BOLD, 14);
-		
-		this.setSize(Math.min(dim * 105, 1900), Math.min(dim*105+30, 1000));
-		this.setContentPane(top);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-		this.setEnabled(true);
-		
-		Ok.addActionListener(new MatriceAdjField.BoutonListener());
-		allToOne.addActionListener(new BoutonAllToOneListener());
-		
+		Container top = new Container();
+		top.setSize(dim*100, dim*100+30);
 		top.setLayout(new GridLayout(dim+1, dim));
 		
-		top.setSize(dim*100, dim*100+30);
+		this.setSize(Math.min(dim * 105, 1900), Math.min(dim*105+30, 1030));
+		this.setContentPane(top);
+		this.setLocationRelativeTo(null);
+		
+		JLabel label = new JLabel("Renseignez la matrice d'adjacence :");
+		
+		Button Ok = new Button("Valider", "Valider");
+		Ok.addActionListener(new MatriceAdjField.BoutonListener());
+		
+		Button allToOne = new Button("Tout mettre à 1", "Tout mettre à 1");
+		allToOne.addActionListener(new BoutonAllToOneListener());
+		
+		
+		Font police = new Font("Arial", Font.BOLD, 14);
 	
 		for(int i = 0; i<this.dim; i++)
 		{
@@ -62,6 +62,10 @@ public class MatriceAdjField extends JDialog
 		top.add(label);
 		top.add(Ok);
 		top.add(allToOne);
+		
+		
+		this.setVisible(true);
+		this.setEnabled(true);
 	}
 	
 	

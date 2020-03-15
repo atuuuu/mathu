@@ -3,6 +3,7 @@ package IHM;
 import math.basic.Graphe;
 import math.basic.Point2D;
 import math.graphic.GraphicGraphe;
+import math.graphic.matriceFields.MatriceAdjField;
 import math.graphic.matriceFields.MatriceDimField;
 import org.jetbrains.annotations.NotNull;
 
@@ -102,6 +103,12 @@ public class Fenetre extends JFrame
 		
 		fenetre.repaint();
 		fenetre.revalidate();
+	}
+	
+	
+	public void nouvMatAdj(int dim, String nom)
+	{
+		MatriceAdjField nouv = new MatriceAdjField(this, dim, nom);
 	}
 	
 	
