@@ -130,6 +130,7 @@ public class Fenetre extends JFrame
 		fenetre.revalidate();
 	}
 	
+	//test
 	
 	public void displayNouvBar()
 	{
